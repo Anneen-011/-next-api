@@ -17,7 +17,7 @@ type State = {
   fetchComments: (postId: number) => Promise<void>;
 };
 
-export const useComments = create<State>((set: (arg0: { loading?: boolean; error?: any; items?: Comment[]; }) => void) => ({
+export const useComments = create<State>((set) => ({
   items: [],
   loading: false,
   error: null,
@@ -28,8 +28,12 @@ export const useComments = create<State>((set: (arg0: { loading?: boolean; error
         `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
       );
       set({ items: data });
-    } catch (err: any) {
-      set({ error: err.message });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        set({ error: err.message });
+      } else {
+        set({ error: "เกิดข้อผิดพลาดไม่ทราบสาเหตุ" });
+      }
     } finally {
       set({ loading: false });
     }
