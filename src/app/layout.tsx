@@ -4,12 +4,12 @@ import "./globals.css";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <nav className="p-4 bg-gray-200 flex gap-4">
-          <Link href="/">🏠 Home</Link>
-          <Link href="/about">ℹ️ About</Link>
-          <Link href="/user">👤 Users</Link>
-          <Link href="/post">📝 Posts</Link>
+      <body className="bg-gray-100 min-h-screen">
+        <nav className="bg-white shadow p-4 flex justify-center gap-6">
+          <Link href="/" className="text-gray-800 font-semibold hover:text-blue-600">Home</Link>
+          <Link href="/about" className="text-gray-800 font-semibold hover:text-blue-600">About</Link>
+          <Link href="/user" className="text-gray-800 font-semibold hover:text-blue-600">Users</Link>
+          <Link href="/post" className="text-gray-800 font-semibold hover:text-blue-600">Posts</Link>
         </nav>
         <main className="p-6">{children}</main>
       </body>
